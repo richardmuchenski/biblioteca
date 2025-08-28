@@ -1,0 +1,9 @@
+{
+    "name": "richard/biblioteca",
+    "require": {
+        "aws/aws-sdk-php": "^3.356",
+        "predis/predis": "^3.2",
+        "dompdf/dompdf": "^3.1",
+        "setasign/fpdf": "^1.8"
+    }
+}
