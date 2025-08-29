@@ -8,7 +8,9 @@ class BookModel {
 
     private $db;
 
-    // Construtor da classe.
+    //private $redis;
+
+    // Construtor da classe, realiza configuração com o banco de dados.
     public function __construct() {
         $dbConfig = require __DIR__ . '/../../config/database.php';
         try {
@@ -23,6 +25,20 @@ class BookModel {
             // Em caso de erro, exibe a mensagem e termina a execução.
             die("Erro de conexão com o banco de dados: " . $e->getMessage());
         }
+
+           /* Conexão com o Redis usando Predis, desativado por conta de problemas em utilizar redis.
+        $redisConfig = require __DIR__ . '/../../config/redis.php';
+        try {
+            $this->redis = new \Predis\Client([
+                'scheme' => 'tcp',
+                'host'   => $redisConfig['host'],
+                'port'   => $redisConfig['port'],
+            ]);
+            $this->redis->ping(); // Testa a conexão
+        } catch (Exception $e) {
+            error_log("Erro de conexão com o Redis: " . $e->getMessage());
+            $this->redis = null;
+        }*/
     }
     
     //Função para retornar todos os livros.
@@ -68,5 +84,15 @@ class BookModel {
         $stmt->bindParam(':isbn', $isbn);
         return $stmt->execute();
     }
-    //Revisar tudo e verificar se está funcionando
+
+    /* Função para armazenar um empréstimo no cache Redis, removido por conta que teve problemas em utilizar redis.
+    public function cacheLoan($loan) {
+        if ($this->redis) {
+            $this->redis->set("loan:{$loan['id']}", json_encode($loan));
+            $this->redis->expire("loan:{$loan['id']}", 3600); // Expira em 1 hora
+        }
+    }*/
+    
+    //Revisar tudo e verificar se está funcionando, uso do redis é a primeira vez não tenho certeza se funcionaria mas deixei aqui.
+
 }

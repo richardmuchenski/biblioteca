@@ -5,11 +5,8 @@ class UserModel {
      * @var PDO var que representa a conexão com o banco de dados
      */
     private $db;
-
-    /**
-     * @var \Predis\Client|null O cliente de conexão com o servidor Redis.
-     */
-    private $redis;
+ 
+    //private $redis;
 
     // Construtor da classe.
     
@@ -27,7 +24,7 @@ class UserModel {
             die("Erro de conexão com o banco de dados: " . $e->getMessage());
         }
 
-        // Conexão com o Redis usando Predis
+        /* Conexão com o Redis usando Predis
         $redisConfig = require __DIR__ . '/../../config/redis.php';
         try {
             $this->redis = new \Predis\Client([
@@ -39,7 +36,7 @@ class UserModel {
         } catch (Exception $e) {
             error_log("Erro de conexão com o Redis: " . $e->getMessage());
             $this->redis = null;
-        }
+        }*/
     }
 
     // Autentica um usuário com base no email e senha.
@@ -143,5 +140,20 @@ class UserModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    //Revisar tudo e verificar se está funcionando
+    public function getUserByName($name) {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE nome = :nome");
+        $stmt->bindParam(':nome', $name);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /* Função para armazenar um empréstimo no cache Redis, removido por conta que teve problemas em utilizar redis.
+    public function cacheLoan($loan) {
+        if ($this->redis) {
+            $this->redis->set("loan:{$loan['id']}", json_encode($loan));
+            $this->redis->expire("loan:{$loan['id']}", 3600); // Expira em 1 hora
+        }
+    }*/    
+
+    //Revisar tudo e verificar se está funcionando, uso do redis é a primeira vez não tenho certeza se funcionaria mas deixei aqui.
 }

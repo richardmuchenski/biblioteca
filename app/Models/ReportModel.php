@@ -7,6 +7,8 @@ class ReportModel {
 
     private $db;
 
+    //private $redis;
+
     // Construtor da classe.
     public function __construct() {
         $dbConfig = require __DIR__ . '/../../config/database.php';
@@ -22,7 +24,23 @@ class ReportModel {
             // Em caso de erro, exibe a mensagem e termina a execução.
             die("Erro de conexão com o banco de dados: " . $e->getMessage());
         }
+
+        /* Conexão com o Redis usando Predis, desativado por conta de problemas em utilizar redis.
+        $redisConfig = require __DIR__ . '/../../config/redis.php';
+        try {
+            $this->redis = new \Predis\Client([
+                'scheme' => 'tcp',
+                'host'   => $redisConfig['host'],
+                'port'   => $redisConfig['port'],
+            ]);
+            $this->redis->ping(); // Testa a conexão
+        } catch (Exception $e) {
+            error_log("Erro de conexão com o Redis: " . $e->getMessage());
+            $this->redis = null;
+        }*/
     }
+
+
 
     // Função para gerar relatório de livros mais emprestados.
     public function getReturnedLoansReport($limit = 10) {
@@ -48,6 +66,7 @@ class ReportModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Função para gerar relatório de livros mais emprestados.
     public function getMostLoansReport($limit = 10) {
         $stmt = $this->db->prepare("
             SELECT 
@@ -67,4 +86,38 @@ class ReportModel {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    // Função para gerar relatório de empréstimos atrasados.
+    public function getOverdueLoansReport() {
+        $stmt = $this->db->prepare("
+            SELECT 
+                b.titulo AS book_tittle,
+                u.name AS user_name,
+                l.loan_date,
+                l.return_date
+            FROM
+                loans l
+            JOIN
+                books b ON l.book_ISBN = b.ISBN
+            JOIN
+                users u ON l.user_cpf = u.cpf
+            WHERE
+                l.returned = 0 AND l.return_date < CURDATE()
+            ORDER BY
+                l.return_date ASC
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /* Função para armazenar um empréstimo no cache Redis, removido por conta que teve problemas em utilizar redis.
+    public function cacheLoan($loan) {
+        if ($this->redis) {
+            $this->redis->set("loan:{$loan['id']}", json_encode($loan));
+            $this->redis->expire("loan:{$loan['id']}", 3600); // Expira em 1 hora
+        }
+    }*/
+    
+    //Revisar tudo e verificar se está funcionando, uso do redis é a primeira vez não tenho certeza se funcionaria mas deixei aqui.
+
 } 

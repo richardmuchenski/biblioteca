@@ -15,3 +15,5 @@ return {
     }
     
     return $connection;
+
+    //Pelo menos esse eu consegui  instalar no WSL e rodar o banco na máquina para usar como MySQL
