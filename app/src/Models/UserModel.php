@@ -79,4 +79,9 @@ class UserModel
         // Verifica se o usuário foi encontrado, se a coluna 'role' existe e se o valor é 'admin'
         return $user && isset($user['role']) && $user['role'] === 'admin';
     }
+
+    public function getAllUsers() {
+        $stmt = $this->db->query("SELECT nome, email, telefone, cpf, role FROM users");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

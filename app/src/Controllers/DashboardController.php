@@ -32,10 +32,10 @@ class DashboardController
         // Verifica se o usuário é um administrador
         if ($this->userModel->isAdmin($email)) {
             // Se for admin, carrega a view do admin
-            include __DIR__ . '/../views/Dashboard_admin.php';
+            include __DIR__ . '/../Views/Dashboard_admin.php';
         } else {
             // Se for um usuário comum, carrega a view do usuário
-            include __DIR__ . '/../views/Dashboard_user.php';
+            include __DIR__ . '/../Views/Dashboard_user.php';
         }
     }
 }

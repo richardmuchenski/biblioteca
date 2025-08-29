@@ -41,6 +41,9 @@ $router->post('/register', [UserController::class, 'register']);
 // Rota para logout
 $router->get('/logout', [UserController::class, 'logout']);
 
+// Rota para o dashboard
+$router->get('/dashboard', [DashboardController::class, 'index']);
+
 
 // Captura a URI e o método da requisição
 $uri = $_SERVER['REQUEST_URI'];
