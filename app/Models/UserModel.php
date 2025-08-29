@@ -14,7 +14,7 @@ class UserModel {
     // Construtor da classe.
     
     public function __construct() {
-        // --- Conexão com o Banco de Dados (MySQL) ---
+        // Conexão com o Banco de Dados (MySQL) 
         $dbConfig = require __DIR__ . '/../../config/database.php';
         try {
             $this->db = new PDO(
@@ -27,7 +27,7 @@ class UserModel {
             die("Erro de conexão com o banco de dados: " . $e->getMessage());
         }
 
-        // --- Conexão com o Redis usando Predis ---
+        // Conexão com o Redis usando Predis
         $redisConfig = require __DIR__ . '/../../config/redis.php';
         try {
             $this->redis = new \Predis\Client([
