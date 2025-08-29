@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\ReportModel;
+
 use Fpdf\Fpdf;
 
 class ReportController {

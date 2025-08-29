@@ -53,6 +53,7 @@ class ComposerStaticInit5929b2dedd8f2b5bb241fbc3a064bd2c
         'A' => 
         array (
             'Aws\\' => 4,
+            'App\\' => 4,
         ),
     );
 
@@ -113,6 +114,10 @@ class ComposerStaticInit5929b2dedd8f2b5bb241fbc3a064bd2c
         'Aws\\' => 
         array (
             0 => __DIR__ . '/..' . '/aws/aws-sdk-php/src',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 

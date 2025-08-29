@@ -20,4 +20,5 @@ return array(
     'FontLib\\' => array($vendorDir . '/dompdf/php-font-lib/src/FontLib'),
     'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
     'Aws\\' => array($vendorDir . '/aws/aws-sdk-php/src'),
+    'App\\' => array($baseDir . '/src'),
 );

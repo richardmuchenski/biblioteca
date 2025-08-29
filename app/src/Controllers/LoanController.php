@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\LoanModel;
+
 class LoanController {
     private $model;
 

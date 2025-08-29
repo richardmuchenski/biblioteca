@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use PDO;
+use PDOException;   
+
 class LoanModel {
     /**
     *@var PDO var que representa a conexão com o banco de dados

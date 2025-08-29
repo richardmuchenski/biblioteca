@@ -3,7 +3,7 @@
         'name' => 'richard/biblioteca',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'b02733ad02bfaba1582fb8c0f5597446eaddd8d3',
+        'reference' => '195c0c184511608eba90d6e697cc9cb3436154c7',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -166,7 +166,7 @@
         'richard/biblioteca' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'b02733ad02bfaba1582fb8c0f5597446eaddd8d3',
+            'reference' => '195c0c184511608eba90d6e697cc9cb3436154c7',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
