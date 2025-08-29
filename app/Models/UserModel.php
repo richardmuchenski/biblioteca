@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 class UserModel {
     /**
      * @var PDO var que representa a conexão com o banco de dados

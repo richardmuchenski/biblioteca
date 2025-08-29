@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 class UserController {
     private $model;
     public function __construct() {

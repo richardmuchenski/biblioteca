@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Core;
+
 $page = $_GET['page'] ?? 'home';
 
 $controllerMap = [

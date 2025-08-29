@@ -1,6 +1,6 @@
 <?php
-//puxa biblioteca necessária pelo composer
-require 'vendor/autoload.php';
+
+namespace App\Controllers;
 
 use Fpdf\Fpdf;
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
     class BookController {
         private $model;
         public function __construct() {
