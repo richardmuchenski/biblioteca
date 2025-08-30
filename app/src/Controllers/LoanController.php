@@ -56,7 +56,7 @@ class LoanController {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user_cpf = $_POST['user_cpf'] ?? '';
-            $book_isbn = $_POST['book_isbn'] ?? '';des
+            $book_isbn = $_POST['book_isbn'] ?? '';
             $loan_date = $_POST['loan_date'] ?? '';
             $return_date = $_POST['return_date'] ?? '';
             $returned = isset($_POST['returned']) ? 1 : 0;
