@@ -80,6 +80,19 @@ class LoanModel {
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+    // Busca empréstimos pelo CPF do usuário.
+    public function getLoanByUserCpf($user_cpf) {
+        $stmt = $this->db->prepare("
+        SELECT id, user_cpf, book_isbn, loan_date, return_date, returned 
+        FROM loans 
+        WHERE user_cpf = :user_cpf
+        ORDER BY loan_date DESC"
+        );
+        $stmt->bindParam(':user_cpf', $user_cpf);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     /* Função para armazenar um empréstimo no cache Redis, removido por conta que teve problemas em utilizar redis.
     public function cacheLoan($loan) {
         if ($this->redis) {

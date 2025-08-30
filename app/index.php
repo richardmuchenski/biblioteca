@@ -12,6 +12,7 @@ require __DIR__ . '/vendor/autoload.php';
 use App\Controllers\UserController;
 use App\Core\Router;
 use App\Controllers\DashboardController;
+use App\Controllers\LoanController;
 
 $router = new Router();
 
@@ -44,7 +45,12 @@ $router->get('/logout', [UserController::class, 'logout']);
 // Rota para o dashboard
 $router->get('/dashboard', [DashboardController::class, 'index']);
 
-
+$router->get('/loans', [LoanController::class, 'listLoans']);
+$router->get('/loans/create', [LoanController::class, 'createLoan']);
+$router->post('/loans/create', [LoanController::class, 'createLoan']);
+$router->get('/loans/edit', [LoanController::class, 'editLoan']);
+$router->post('/loans/edit', [LoanController::class, 'editLoan']);
+$router->get('/loans/view', [LoanController::class, 'viewLoan']);
 // Captura a URI e o método da requisição
 $uri = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];

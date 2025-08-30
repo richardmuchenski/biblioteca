@@ -71,7 +71,7 @@ class LoanController {
         }
     }
     public function deleteLoan($id) {
-        requireRole(['admin']); //somente admins podem deletar empréstimos
+        requireRole(['admin']); //somente admins podem deletar empréstimos TESTE
         if ($this->model->deleteLoan($id)) {
             header('Location: index.php?page=loans');
             exit();
